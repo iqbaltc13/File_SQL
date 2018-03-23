@@ -1,0 +1,494 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: 22 Mar 2018 pada 09.28
+-- Versi Server: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `upmedme_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `analisa_kesehatan`
+--
+
+CREATE TABLE `analisa_kesehatan` (
+  `id` int(11) NOT NULL,
+  `subjek_1` int(11) NOT NULL DEFAULT '0',
+  `subjek_2` int(11) DEFAULT '0',
+  `subjek_3` int(11) DEFAULT '0',
+  `id_kondisi` int(11) DEFAULT NULL,
+  `kode_pesan` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `analisa_kesehatan`
+--
+
+INSERT INTO `analisa_kesehatan` (`id`, `subjek_1`, `subjek_2`, `subjek_3`, `id_kondisi`, `kode_pesan`) VALUES
+(3, 2, 1, 0, 1, '1A'),
+(4, 6, 1, NULL, 1, '1B'),
+(5, 1, 11, 10, 9, '1C'),
+(6, 1, 0, 0, 0, '1D'),
+(7, 1, 2, NULL, 2, '1A'),
+(8, 2, 29, NULL, 2, '2B'),
+(9, 2, 29, 32, 1, '2C'),
+(10, 2, 2, NULL, 6, '2D'),
+(11, 2, 29, 32, 8, '2E'),
+(12, 3, 11, NULL, 9, '3A'),
+(13, 3, 12, NULL, 2, '3B'),
+(14, 3, 33, NULL, 4, '3C'),
+(15, 3, 11, NULL, 5, '3D'),
+(16, 3, 34, NULL, 3, '3E'),
+(17, 36, 11, NULL, 1, '35A'),
+(18, 35, NULL, NULL, 11, '34A'),
+(19, 33, NULL, NULL, 4, '32A'),
+(20, 32, 2, NULL, 0, '31A'),
+(21, 31, 29, NULL, 3, '30A'),
+(22, 30, 29, NULL, 3, '29A'),
+(23, 28, NULL, NULL, 4, '27B'),
+(24, 28, 1, NULL, 11, '27A'),
+(25, 26, NULL, NULL, 3, '23B'),
+(26, 24, 10, NULL, 3, '23A'),
+(27, 21, NULL, NULL, 3, '20A'),
+(28, 20, 11, NULL, 3, '21BX'),
+(29, 20, 2, NULL, 3, '21AX'),
+(30, 19, NULL, NULL, 3, '20X'),
+(31, 0, NULL, NULL, 3, '19A'),
+(32, 23, NULL, NULL, 3, '17B'),
+(33, 16, 6, NULL, 3, '17A'),
+(34, 40, NULL, NULL, 0, '16A'),
+(35, 14, NULL, NULL, 0, '14A'),
+(36, 13, NULL, NULL, 0, '13A'),
+(37, 12, NULL, NULL, 0, '12A'),
+(38, 11, 18, NULL, 1, '11B'),
+(39, 11, 3, 7, 9, '11A'),
+(40, 10, 11, NULL, 9, '10A'),
+(41, 9, NULL, NULL, 9, '9A'),
+(42, 2, 9, NULL, 1, '8A'),
+(43, 1, 4, NULL, 0, '4A'),
+(44, 4, 39, NULL, 9, '4B'),
+(45, 4, 33, NULL, 9, '4C'),
+(46, 1, 5, NULL, 9, '5A'),
+(47, 6, 5, NULL, 1, '5B'),
+(48, 5, 3, NULL, 8, '5C'),
+(49, 2, 6, NULL, 9, '6A'),
+(50, 17, 6, NULL, 9, '6B'),
+(51, 18, 6, NULL, 9, '6C'),
+(52, 6, 1, NULL, 8, '6D'),
+(53, 35, 11, NULL, 2, '35A'),
+(54, 34, 3, NULL, 11, '3E'),
+(55, 29, 32, 2, 4, '2C'),
+(56, 2, 32, 0, 4, '31A'),
+(57, 25, 0, 0, 3, '23B'),
+(58, 18, 11, 0, 2, '11B'),
+(60, 5, 6, 0, 2, '5B'),
+(61, 37, 11, 0, 1, '35A'),
+(62, 32, 2, 0, 10, '2A'),
+(63, 24, 10, 0, 10, '23B'),
+(65, 11, 3, 0, 9, '3D');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kondisi`
+--
+
+CREATE TABLE `kondisi` (
+  `id` int(11) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='tabel kondisi';
+
+--
+-- Dumping data untuk tabel `kondisi`
+--
+
+INSERT INTO `kondisi` (`id`, `deskripsi`) VALUES
+(0, 'default message'),
+(1, 'bila disertai subjek 1 setelah subjek 2 (id kondisi 1)'),
+(2, ' bila disertai subjek 1 sebelum subjek 2'),
+(3, ' bila subjek 1 diatas normal'),
+(4, ' bila subjek 2 dibawah normal'),
+(5, 'penurunan drastis(berat badan masuk nya ke profil lho?)(ragu)'),
+(6, ' mengalami subjek 1 berturut turut (rawan fail,perlu edukasi ke penggunanya)'),
+(7, 'konsumsi obat tertentu(ragu, kecuali kita bisa cek ada kata tertentu dalam deskripsi?)'),
+(8, 'tanpa disertai subjek 1,subjek 2'),
+(9, 'bila disertai dan/atau subjek 1,2,3,4'),
+(10, ' subjek 1 diatas normal tanpa disertai subjek 2'),
+(11, 'subjek 1 di bawah normal setelah');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 CHECKSUM=1 COLLATE=utf8_unicode_ci DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data untuk tabel `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('rifqimaula@gmail.com', 'bc01e8b869a731ba821d697ec1ff5af782442c18f7d9f4870f05b15cadea8634', '2017-06-28 06:12:21');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `profil`
+--
+
+CREATE TABLE `profil` (
+  `UID` int(11) NOT NULL,
+  `Nama` varchar(255) NOT NULL,
+  `Alamat` varchar(255) NOT NULL,
+  `HP` varchar(20) DEFAULT NULL,
+  `User` varchar(30) DEFAULT NULL,
+  `Username` varchar(20) DEFAULT NULL,
+  `Kodepos` varchar(10) DEFAULT NULL,
+  `Foto` varchar(120) DEFAULT NULL,
+  `Umur` int(11) DEFAULT NULL,
+  `Golongan_darah` varchar(2) DEFAULT NULL,
+  `berat_badan` int(11) DEFAULT NULL,
+  `tinggi_badan` int(11) DEFAULT NULL,
+  `riwayat_penyakit` text,
+  `No_BPJS` varchar(20) DEFAULT NULL,
+  `NO_KTP` varchar(20) DEFAULT NULL,
+  `Kota` varchar(100) DEFAULT NULL,
+  `Pekerjaan` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `profil`
+--
+
+INSERT INTO `profil` (`UID`, `Nama`, `Alamat`, `HP`, `User`, `Username`, `Kodepos`, `Foto`, `Umur`, `Golongan_darah`, `berat_badan`, `tinggi_badan`, `riwayat_penyakit`, `No_BPJS`, `NO_KTP`, `Kota`, `Pekerjaan`) VALUES
+(20, 'User Satu', 'Keputih', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `rekor_medis`
+--
+
+CREATE TABLE `rekor_medis` (
+  `record_id` int(11) NOT NULL,
+  `User` varchar(30) NOT NULL,
+  `Subject` varchar(255) NOT NULL,
+  `Description_value` varchar(255) NOT NULL,
+  `Datetime` datetime NOT NULL,
+  `Title` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `rekor_medis`
+--
+
+INSERT INTO `rekor_medis` (`record_id`, `User`, `Subject`, `Description_value`, `Datetime`, `Title`) VALUES
+(2, '10', '0', 'jatuh di selokan, luka borok berdarah di kaki kanan habis itu agak kaku lutut kanan saya', '2017-09-23 00:00:00', 'jatuh di selokan'),
+(4, '10', '0', 'borok bernanah di kaki kiri', '2017-09-26 00:00:00', 'Jatuh dari Sepeda'),
+(5, '10', '16', '200', '2017-09-27 00:00:00', 'Gula darah Tinggi'),
+(6, '10', '16', '200', '2017-09-27 00:00:00', 'Gula darah Tinggi'),
+(7, '10', '16', '200', '2017-09-27 00:00:00', 'Gula darah Tinggi'),
+(8, '10', '16', '200', '2017-09-27 00:00:00', 'Gula darah Tinggi'),
+(9, '10', '16', '200', '2017-09-27 00:00:00', 'Gula darah Tinggi'),
+(10, '10', '16', '300', '2017-09-27 00:00:00', 'Hasil pemeriksaan Lab pagi'),
+(11, '10', '1', 'gak tau pokoknya gak enak aja akhir akhir ini', '0000-00-00 00:00:00', 'keseleo'),
+(12, '10', '1', 'Gak enak badan', '2017-10-12 00:00:00', 'Tes trauma'),
+(13, '10', '1', 'Sekarang pakai deskripsi', '2017-10-12 00:00:00', 'Tes Trauma 2'),
+(14, '10', '2', 'Demam suhu sekitar 40 derajat celcius dibarengi gatal-gatal', '2017-10-10 00:00:00', 'Sakit Demam karena alergi'),
+(15, '20', '1', 'Kecelakaan', '2017-10-16 00:00:00', 'Jatuh dari Sepeda');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `relasi_subjek`
+--
+
+CREATE TABLE `relasi_subjek` (
+  `id` int(11) NOT NULL,
+  `subjek_medis` varchar(50) DEFAULT NULL,
+  `relasi` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `smart_message`
+--
+
+CREATE TABLE `smart_message` (
+  `id_pesan` int(11) NOT NULL,
+  `kode_pesan` varchar(5) NOT NULL,
+  `message` varchar(150) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `smart_message`
+--
+
+INSERT INTO `smart_message` (`id_pesan`, `kode_pesan`, `message`) VALUES
+(1, '1A', 'Hati Hati Anda Demam setelah benturan, barangkali ada luka sobek yang menjadi sumber'),
+(2, '1B', 'Apakah gangguan syaraf anda relevan dengan lokasi benturan yang anda terima sebelumnya'),
+(3, '1C', 'Apakah benturan sebelumnya mengenai dada ? Bila iya anda sebaiknya menemui dokter '),
+(4, '1D', 'Benturan bisa membuat kerusakan jaringan pada organ yang mungkin terkena benturan tsb.'),
+(5, '2A', 'Bisa saja gigitan hewan tersebut beracun atau menganduk bakteri / virus yang menyebabkan'),
+(6, '2B', 'Demam dikikuti dengan kadar WBC yang tinggi menandakan adanya infeksi. temui dokter'),
+(7, '2C', 'Trombosit yang rendah juga ada demam menandakan kecurigaan ke arah demam berdarah'),
+(8, '2D', 'Demam diatas 2-3 hari patut dicurigai bukan demam biasa. seperti DBD, tipus dsb.'),
+(9, '2E', 'Bila demam lebih dari 2-3 hari anda sebaiknya berobat ke dokter dan melakukan Periksa'),
+(10, '3A', 'Batuk disertai sesak bisa dikarenakan riwayat merokok yang lama ataupun penyakit paru'),
+(11, '3B', 'Bila benar anda sesak setelah mengkonsumsi obat obatan sebelumnya barangkali itu'),
+(12, '3C', 'Anda telah mengisi data CD4 berarti mungkin anda sudah tau mengenai penyakit yang'),
+(13, '3D', 'Apakah benar batuk anda disertai penurunan berat badan. bila benar segeralah konsultasi'),
+(14, '3E', 'Sesak juga bisa diakibatkan kerusakan jaringan organ saluran pernafasan yang dirusak'),
+(15, '4A', 'Hati hati bila sebelumnya terdapat benturan di daerah perut atau pinggang maka perlu'),
+(16, '4B', 'Bila terdapat gangguan pencernaan dan ruam kulit mungkin bisa saja karena alergi makanan'),
+(17, '4C', 'CD4 yang menurun juga bisa menyebabkan gangguan pencernaan berkepanjangan. silahkan'),
+(18, '5A', 'Benturan yang keras di dekat telinga juga bisa menyebabkan kerusakan struktur di telinga'),
+(19, '5B', 'Organ pendengaran sangat dekat dengan otak yang menjadi pusat syaraf. bila terdapat '),
+(20, '5C', 'Dinding mukosa epitel organ telinga sama dengan pada saluran pernafasan. maka dari itu'),
+(21, '6A', 'demam dan gangguan syaraf bisa saja karena infeksi. waspada bila pusing hebat, muntah'),
+(22, '6B', 'Diabetes juga bisa membuat kebas, mati rasa, ataupun gangguan syaraf lain. tetap kontrol'),
+(23, '6C', 'Peningkatan ureum/BUN juga mampu meracuni otak dan mengganggu sistem syaraf dan '),
+(24, '6D', 'gangguan syaraf juga bisa saja disebabkan oleh benturan. '),
+(25, '8A', 'Bepergian di daerah endemis penyakit menular menyebabkan kerentanan anda untuk'),
+(26, '9A', 'Gigitan Hewan tidak bisa kita anggap enteng. maka dari itu segeralah konsultasi atau datang'),
+(27, '10A', 'nyeri dada dan sesak yang dikawatirkan adalah gejala koroner dan penyakit jantung lain.'),
+(28, '11A', 'sesak dengan batuk dan riwayat alergi sangat besar kemungkinan adalah gejala asma.'),
+(29, '11B', 'BUN yang meningkat membuat tubuh kita menjadi asam dan nafas semakin cepat '),
+(30, '12A', 'tetap catatlah obat yang anda konsumsi. bila terdapat efek samping segera bawa ke RS.'),
+(31, '13A', 'catatan hasil berobat ke dokter atau ke RS sangatlah penting. disitu anda mendapatkan'),
+(32, '14A', '-'),
+(33, '16A', 'Masalah kewanitaan juga perlu penanganan khusus. bila benjolan sebaiknya konsultasi'),
+(34, '17A', 'Diabetes juga bisa menyebabkan masalah pada syaraf. sebaiknya tetap kontrol gula anda'),
+(35, '17B', 'Gula darah yang melebihi kadar normal bila berlangsung lama tidak lah baik karena akan'),
+(36, '19A', 'Tekanan darah yang tinggi menyebabkan gangguan di pembuluh darah pada seluruh tubuh. '),
+(37, '20X', 'ada keluhan atau tidak sebaiknya kadar asam urat dalam darah tetap normal karena asam '),
+(38, '21AX', 'SGOT/SGPT yang meningkat disertai demam, kecurigaan akan Hepatitis.'),
+(39, '21BX', 'Pernahkah anda perhatikan apakah perut anda tambah membesar, dan anda sering mual'),
+(40, '20A', 'Nilai creatinin dan BUN anda bila diatas normal harus dicurigai akan adanya masalah pada ginjal '),
+(41, '23A', 'Kolestrol adalah molekul yang bisa lengket di pembuluh darah. bila terkena dijantung bisa'),
+(42, '23B', 'Kolestrol yang tinggi dapat menyebabkan buntunya pembuluh darah sehingga aliran darah'),
+(43, '27A', 'Hemoglobin yang dibawah normal menandakan anda Anemia. konsultasi kepada dokter'),
+(44, '27B', 'Hb anda dibawah 7 tandanya anda mengalami anemia berat. bisa saja karena adanya '),
+(45, '29A', 'ada kecurigaan besar anda mengalami infeksi bakteri.'),
+(46, '30A', 'ada kecurigaan besar anda mengalami infeksi virus.'),
+(47, '31A', 'trombosit adalah molekul darah yang berfungsi untuk membekukan pendarahan. bila'),
+(48, '32A', 'Bila CD4 anda sangat rendah maka perlu diterapi dengan ARV segera atau konsultasi ke'),
+(49, '34A', 'Ayo lebih banyak minum air putih. minum air yang kurang menyebabkan kerja ginjal '),
+(50, '35A', 'bila sesak anda mengganggu aktivitas sehari hari atau aktivitas yang dulu masih bisa'),
+(51, '00C', 'Terimakasih telah mempercayakan kepada kami data medis anda. semoga'),
+(52, '00B', 'Maaf kami rasa anda memasukan nilainya kurang sesuai dengan satuan normal'),
+(53, '00A', 'Maaf anda boleh mengecek ulang nilai yang disimpan apakah relevan dengan');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `subjek`
+--
+
+CREATE TABLE `subjek` (
+  `id` int(11) NOT NULL,
+  `Name` varchar(255) DEFAULT NULL,
+  `Group` decimal(10,0) DEFAULT NULL,
+  `Type` binary(1) DEFAULT NULL COMMENT '0 text , 1 angka'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `subjek`
+--
+
+INSERT INTO `subjek` (`id`, `Name`, `Group`, `Type`) VALUES
+(1, 'Trauma', '0', 0x30),
+(2, 'Demam', '0', 0x30),
+(3, 'Batuk', '0', 0x30),
+(4, 'Gangguan Pencernaan', '0', 0x30),
+(5, 'Gangguan Telinga', '0', 0x30),
+(6, 'Gangguan Syaraf', '0', 0x30),
+(7, 'Makan minum curiga', '0', 0x30),
+(8, 'Pergi ke daerah endemis', '0', 0x30),
+(9, 'Gigitan Hewan', '0', 0x30),
+(10, 'Nyeri Dada', '0', 0x30),
+(11, 'Sesak', '0', 0x30),
+(12, 'Konsumsi obat tertentu', '0', 0x30),
+(13, 'Pergi ke dokter', '0', 0x30),
+(14, 'Nyeri Persendian/otot', '0', 0x30),
+(15, 'lain lain', '0', 0x30),
+(16, 'Gula Darah Puasa', '0', 0x31),
+(17, 'Gula Darah Acak', '0', 0x31),
+(18, 'Tensi darah sistol', '0', 0x31),
+(19, 'Asam Urat', '0', 0x31),
+(20, 'SGOT/SGPT', '0', 0x31),
+(21, 'Serum Creatinin', '0', 0x31),
+(22, 'Ureum', '0', 0x31),
+(23, 'HBA1C', '0', 0x31),
+(24, 'Cholestrol Total', '0', 0x31),
+(25, 'Cholestrol HDL', '0', 0x31),
+(26, 'Cholestrol LDL', '0', 0x31),
+(27, 'Trigliserida', '0', 0x31),
+(28, 'Hemoglobin', '0', 0x31),
+(29, 'Sel Darah Putih', '0', 0x31),
+(30, 'Neutrofil', '0', 0x31),
+(31, 'Limfosit', '0', 0x31),
+(32, 'Trombosit ', '0', 0x31),
+(33, 'CD4++', '0', 0x31),
+(34, 'Jumlah Batang rokok ', '0', 0x31),
+(35, 'Minum Air Putih per hari', '0', 0x31),
+(36, 'Jarak Berjalan Kaki', '0', 0x31),
+(37, 'Olahraga', '0', 0x30),
+(38, 'Puasa', '0', 0x30),
+(39, 'Penyakit Kulit dan Kelamin', '0', 0x30),
+(40, 'Gangguan Mens dan Kewanitaan', '0', 0x30);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `role` int(11) DEFAULT NULL COMMENT '1 utk admin, 2 untuk native',
+  `status_login` int(10) DEFAULT NULL COMMENT '0 jika belum , 1 jika login',
+  `last_login` timestamp NULL DEFAULT NULL COMMENT 'waktu terakhir login',
+  `username` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 CHECKSUM=1 COLLATE=utf8_unicode_ci DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `status_login`, `last_login`, `username`) VALUES
+(10, 'admin', 'admin@gmail.com', '$2y$10$4dAinxTHaXS4ZUa6eRmYBu3QCggm0fXvRdtutRQKnm.Vldim3tPci', 'zorL4PlU4pT20OeUKh6Mm3VNMeoSYAzuWXmURK6kfANaOLoZSEhg7LS8zvvV', '2016-06-24 09:50:01', '2017-10-23 13:18:02', 1, 1, '2017-06-26 15:03:11', 'admin'),
+(20, 'user1', 'user1@gmail.com', '$2y$10$4dAinxTHaXS4ZUa6eRmYBu3QCggm0fXvRdtutRQKnm.Vldim3tPci', '1FiArR1ciLkYqgu6HnsG786zzrwhAlF1ZJMPtsjXFMXqja6pjkI4Bi4GjrHq', '2016-06-24 09:50:01', '2017-10-16 18:41:07', 1, 1, '2017-06-26 15:03:11', 'user1');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `analisa_kesehatan`
+--
+ALTER TABLE `analisa_kesehatan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kondisi`
+--
+ALTER TABLE `kondisi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`),
+  ADD KEY `password_resets_token_index` (`token`);
+
+--
+-- Indexes for table `profil`
+--
+ALTER TABLE `profil`
+  ADD PRIMARY KEY (`UID`);
+
+--
+-- Indexes for table `rekor_medis`
+--
+ALTER TABLE `rekor_medis`
+  ADD PRIMARY KEY (`record_id`);
+
+--
+-- Indexes for table `relasi_subjek`
+--
+ALTER TABLE `relasi_subjek`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `smart_message`
+--
+ALTER TABLE `smart_message`
+  ADD PRIMARY KEY (`id_pesan`);
+
+--
+-- Indexes for table `subjek`
+--
+ALTER TABLE `subjek`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `analisa_kesehatan`
+--
+ALTER TABLE `analisa_kesehatan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+--
+-- AUTO_INCREMENT for table `kondisi`
+--
+ALTER TABLE `kondisi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `rekor_medis`
+--
+ALTER TABLE `rekor_medis`
+  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `relasi_subjek`
+--
+ALTER TABLE `relasi_subjek`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `smart_message`
+--
+ALTER TABLE `smart_message`
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+--
+-- AUTO_INCREMENT for table `subjek`
+--
+ALTER TABLE `subjek`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
